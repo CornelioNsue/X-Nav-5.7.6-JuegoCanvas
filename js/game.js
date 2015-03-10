@@ -52,8 +52,11 @@ var hero = {
 	speed: 256 // movement in pixels per second
 };
 var princess = {}; // 
-var princessesCaught = 0;
-
+//var princessesCaught = 0;
+var princessesCaught =  localStorage.getItem("puntos");
+if (princessesCaught ==null){
+    princessesCaught =0;
+}
 // Handle keyboard controls
 var keysDown = {};
 
@@ -95,39 +98,50 @@ var reset = function () {
 // Update game objects
 var update = function (modifier) {
 	if (38 in keysDown) { // Player holding up
-        if(hero.y > 15){
+        if(hero.y > 32){
 		    hero.y -= hero.speed * modifier;
         }else{
-            ctx.fillText("retorna hacia abajo! ", hero.x, hero.y+32);
-            hero.y = 15;
 
+            
+            //pintar el mensaje
+            ctx.fillStyle = "rgb(250, 250, 250)";
+	        ctx.font = "24px Helvetica";
+	        ctx.textAlign = "left";
+	        ctx.textBaseline = "top";
+            ctx.fillText("retorna hacia abajo! ", hero.x-32, hero.y-32);
+            hero.y = 32;
         }          
 
    }
     
 
    if (40 in keysDown) { // Player holding down
-	      if(hero.y < 435){
+	      if(hero.y < 418){
              hero.y += hero.speed * modifier;
           }else{
 
-              ctx.fillText("retorna hacia arriba! ", hero.x, hero.y-32);
-              hero.y = 435;
+              
+              ctx.fillStyle = "rgb(250, 250, 250)";
+	          ctx.font = "24px Helvetica";
+	          ctx.textAlign = "left";
+	          ctx.textBaseline = "top";
+              ctx.fillText("retorna hacia arriba! ", hero.x, hero.y+32);
+              hero.y = 418;
           }    
 
     }
 	if (37 in keysDown) { // Player holding left
-		    if(hero.x > 15){
+		    if(hero.x > 32){
                hero.x -= hero.speed * modifier;
             }else{
-                hero.x = 15;
+                hero.x = 32;
             }
     }
 	if (39 in keysDown) { // Player holding right
-            if(hero.x < 474){		    
+            if(hero.x < 450){		    
                 hero.x += hero.speed * modifier;
             }else{
-                hero.x =474;
+                hero.x =450;
             } 
     }
 
@@ -139,6 +153,7 @@ var update = function (modifier) {
 		&& princess.y <= (hero.y + 32)
 	) {
 		++princessesCaught;
+		localStorage.setItem("puntos", princessesCaught);
 		reset();
 	}
 };
