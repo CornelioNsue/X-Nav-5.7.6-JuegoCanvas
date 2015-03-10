@@ -43,7 +43,7 @@ var piedraImage = new Image();
 piedraImage.onload = function () {
 	piedraReady = true;
 };
-piedraImage.src = "images/piedras.png";
+piedraImage.src = "images/stone.png";
 
 
 // Game objects
@@ -95,11 +95,11 @@ var reset = function () {
 // Update game objects
 var update = function (modifier) {
 	if (38 in keysDown) { // Player holding up
-        if(hero.y > 0){
+        if(hero.y > 15){
 		    hero.y -= hero.speed * modifier;
         }else{
             ctx.fillText("retorna hacia abajo! ", hero.x, hero.y+32);
-            hero.y = 0;
+            hero.y = 15;
 
         }          
 
@@ -107,27 +107,27 @@ var update = function (modifier) {
     
 
    if (40 in keysDown) { // Player holding down
-	      if(hero.y < 450){
+	      if(hero.y < 435){
              hero.y += hero.speed * modifier;
           }else{
 
               ctx.fillText("retorna hacia arriba! ", hero.x, hero.y-32);
-              hero.y = 450;
+              hero.y = 435;
           }    
 
     }
 	if (37 in keysDown) { // Player holding left
-		    if(hero.x > 0){
+		    if(hero.x > 15){
                hero.x -= hero.speed * modifier;
             }else{
-                hero.x = 0;
+                hero.x = 15;
             }
     }
 	if (39 in keysDown) { // Player holding right
-            if(hero.x < 484){		    
+            if(hero.x < 474){		    
                 hero.x += hero.speed * modifier;
             }else{
-                hero.x =484;
+                hero.x =474;
             } 
     }
 
