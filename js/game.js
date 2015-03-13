@@ -21,6 +21,14 @@ bgImage.onload = function () {
 };
 bgImage.src = "images/background.png";
 
+// Monster image
+var monstruoReady = false;
+var monstruoImage = new Image();
+monstruoImage.onload = function() {
+    monstruoReady = true;
+};
+monstruoImage.src = "images/monster.png"
+
 // Hero image
 var heroReady = false; 
 var heroImage = new Image();
@@ -47,7 +55,7 @@ piedraImage.src = "images/stone.png";
 
 
 // Game objects
-
+var piedras = {};
 var hero = {
 	speed: 256 // movement in pixels per second
 };
@@ -156,6 +164,10 @@ var update = function (modifier) {
 		localStorage.setItem("puntos", princessesCaught);
 		reset();
 	}
+
+    /*if () {
+            
+    } */
 };
 
 // Draw everything
@@ -172,12 +184,35 @@ var render = function () {
 		ctx.drawImage(princessImage, princess.x, princess.y);
 	}
 
+    
+  if(monstruoReady){
+
+        ctx.drawImage(monstruoImage, 100, 150); 
+         ctx.drawImage(monstruoImage, 250, 130); 
+    }
+
     if (piedraReady) {
-		ctx.drawImage(piedraImage, 64, 64);
-        ctx.drawImage(piedraImage, 180, 180);
-        ctx.drawImage(piedraImage, 310, 264);
-        ctx.drawImage(piedraImage, 460, 400);
-	}
+
+       
+        // piedras columna izquierda       
+        ctx.drawImage(piedraImage, 90, 100);
+        ctx.drawImage(piedraImage, 100, 250);
+        ctx.drawImage(piedraImage, 100, 350);
+
+        // piedras fila superior
+         ctx.drawImage(piedraImage, 250, 64); 
+     
+        
+        // columna de la derecha
+	    ctx.drawImage(piedraImage, 350, 100); 
+        ctx.drawImage(piedraImage, 350, 200); 
+        ctx.drawImage(piedraImage, 350, 350);
+      
+
+        // Piedras  centro
+        ctx.drawImage(piedraImage, 220, 200); 
+        ctx.drawImage(piedraImage, 250, 350);  
+}
 	// Score
 	ctx.fillStyle = "rgb(250, 250, 250)";
 	ctx.font = "24px Helvetica";
