@@ -107,17 +107,25 @@ var reset = function () {
 var update = function (modifier) {
 	if (38 in keysDown) { // Player holding up
         if(hero.y > 32){
-		    hero.y -= hero.speed * modifier;
+                		          //  hero.y -= hero.speed * modifier;
+                if (hero.y <=120 && hero.y >=90 && hero.x >= 150 && hero.x<=210){
+
+                    console.log("up "+hero.x+", "+hero.y);                      
+                     hero.x = hero.x;
+                      hero.y = hero.y;
+                }else{
+		            hero.y -= hero.speed * modifier;
+                }
         }else{
 
             
             //pintar el mensaje
-            ctx.fillStyle = "rgb(250, 250, 250)";
-	        ctx.font = "24px Helvetica";
-	        ctx.textAlign = "left";
-	        ctx.textBaseline = "top";
-            ctx.fillText("retorna hacia abajo! ", hero.x-32, hero.y-32);
-            hero.y = 32;
+                ctx.fillStyle = "rgb(250, 250, 250)";
+	            ctx.font = "24px Helvetica";
+	            ctx.textAlign = "left";
+	            ctx.textBaseline = "top";
+                ctx.fillText("retorna hacia abajo! ", hero.x-32, hero.y-32);
+                hero.y = 32;
         }          
 
    }
@@ -125,8 +133,15 @@ var update = function (modifier) {
 
    if (40 in keysDown) { // Player holding down
 	      if(hero.y < 418){
-             hero.y += hero.speed * modifier;
-          }else{
+             
+                if (hero.y >=60 && hero.y <=100 && hero.x >= 150 && hero.x <=210) {
+                            console.log("down "+hero.x+", "+hero.y);                      
+                            hero.x = hero.x;
+                            hero.y = hero.y;
+                }else{
+                     hero.y += hero.speed * modifier;
+                }
+        }else{
 
               
               ctx.fillStyle = "rgb(250, 250, 250)";
@@ -140,17 +155,35 @@ var update = function (modifier) {
     }
 	if (37 in keysDown) { // Player holding left
 		    if(hero.x > 32){
-               hero.x -= hero.speed * modifier;
+
+                    hero.x -= hero.speed * modifier; 
+                /*  if (hero.x <= 179 ) {
+                        console.log("pieddra "+hero.x+", "+hero.y);                      
+                        hero.x = hero.x;
+                        hero.y = hero.y;
+                   }else{
+                      hero.x -= hero.speed * modifier; 
+                    }
+            } */
             }else{
                 hero.x = 32;
             }
     }
 	if (39 in keysDown) { // Player holding right
             if(hero.x < 450){		    
-                hero.x += hero.speed * modifier;
+
+                  if (hero.x >= 150 && hero.x <=199 && hero.y >=60 && hero.y <=120) {
+                        console.log("derecha "+hero.x+", "+hero.y);                      
+                        hero.x = hero.x;
+                        hero.y = hero.y;
+                 }else{
+                      hero.x += hero.speed * modifier; 
+                    }
+
             }else{
                 hero.x =450;
             } 
+            
     }
 
 	// Are they touching?  // Controla la colision del herore con la princesa
@@ -165,9 +198,7 @@ var update = function (modifier) {
 		reset();
 	}
 
-    /*if () {
-            
-    } */
+     
 };
 
 // Draw everything
@@ -195,7 +226,7 @@ var render = function () {
 
        
         // piedras columna izquierda       
-        ctx.drawImage(piedraImage, 90, 100);
+        ctx.drawImage(piedraImage, 180, 100);
         ctx.drawImage(piedraImage, 100, 250);
         ctx.drawImage(piedraImage, 100, 350);
 
